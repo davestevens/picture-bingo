@@ -25,6 +25,9 @@
 </script>
 
 <style>
+  main {
+    padding-bottom: 20px;
+  }
 </style>
 
 <svelte:window on:popstate={onNavigateBack} />

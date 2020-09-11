@@ -5,11 +5,9 @@
 <style>
 </style>
 
+<h1>Picture Bingo</h1>
+
 <nav>
   <RouterLink path="/player">Player</RouterLink>
   <RouterLink path="/caller">Caller</RouterLink>
 </nav>
-
-<main>
-  <h1>Home</h1>
-</main>
