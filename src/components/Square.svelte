@@ -13,16 +13,17 @@
 
 <style>
   .cell {
-    width: 20%;
+    width: 16.666%;
     float: left;
     position: relative;
+    border: 1px solid black;
+    box-sizing: border-box;
   }
 
   .cell:before {
     content: "";
     display: block;
     padding-top: 100%;
-    border: 1px solid black;
   }
 
   .cell.selectable {
@@ -31,6 +32,10 @@
 
   .cell.selected {
     background: red;
+  }
+
+  .cell.selected img {
+    opacity: 0.6;
   }
 
   .cell img {
