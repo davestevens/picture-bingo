@@ -1,14 +1,18 @@
 <script type="ts">
-  import getRandomFromArray from "../services/getRandomFromArray";
-  import { images, PLAYER_IMAGE_COUNT } from "../consts";
+  import { caller } from "../stores/caller";
+  // import getRandomFromArray from "../services/getRandomFromArray";
+  import { images } from "../consts";
   import RouterLink from "../components/RouterLink.svelte";
   import Square from "../components/Square.svelte";
 
-  const shuffledImages = getRandomFromArray(images, images.length);
-  let selectedImages: string[] = [];
+  const handleNewGame = () => {
+    if (confirm("Start a new game?")) {
+      caller.newGame();
+    }
+  };
 
   const handleSelect = (): void => {
-    selectedImages = [...selectedImages, shuffledImages.pop()];
+    caller.selectNext();
   };
 </script>
 
@@ -25,9 +29,10 @@
 <button on:click={handleSelect}>Select</button>
 <div class="grid">
   {#each images as image}
-    <Square {image} selected={selectedImages.indexOf(image) > -1} />
+    <Square {image} selected={$caller.selected.indexOf(image) > -1} />
   {/each}
 </div>
 <div>
+  <button on:click={handleNewGame}>New Game</button>
   <RouterLink path="/">Back</RouterLink>
 </div>
