@@ -1,10 +1,18 @@
 <script type="ts">
-  import getRandomFromArray from "../services/getRandomFromArray";
-  import { images, PLAYER_IMAGE_COUNT } from "../consts";
+  import { player } from "../stores/player";
+  import { images } from "../consts";
   import RouterLink from "../components/RouterLink.svelte";
   import Square from "../components/Square.svelte";
 
-  const selectedImages = getRandomFromArray(images, PLAYER_IMAGE_COUNT);
+  const handleNewGame = () => {
+    if (confirm("Start a new game?")) {
+      player.newGame();
+    }
+  };
+
+  const handleSelect = (image: string): void => {
+    player.toggleSelected(image);
+  };
 </script>
 
 <style>
@@ -20,10 +28,12 @@
 <div class="grid">
   {#each images as image}
     <Square
-      image={selectedImages.indexOf(image) > -1 ? image : ''}
-      selectable={selectedImages.indexOf(image) > -1} />
+      image={$player.images.indexOf(image) > -1 ? image : ''}
+      onSelect={$player.images.indexOf(image) > -1 ? () => handleSelect(image) : null}
+      selected={$player.selected.indexOf(image) > -1} />
   {/each}
 </div>
 <div>
+  <button on:click={handleNewGame}>New Game</button>
   <RouterLink path="/">Back</RouterLink>
 </div>

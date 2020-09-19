@@ -1,14 +1,8 @@
 <script type="ts">
   export let image: string;
-  export let selectable: boolean = false;
+  export let onSelect: () => void = null;
   export let selected: boolean = false;
-
-  const handleClick = (): void => {
-    if (!selectable) {
-      return;
-    }
-    selected = !selected;
-  };
+  const selectable = !!onSelect;
 </script>
 
 <style>
@@ -47,6 +41,6 @@
   }
 </style>
 
-<div class="cell" class:selected class:selectable on:click={handleClick}>
+<div class="cell" class:selected class:selectable on:click={onSelect}>
   {#if image}<img src={image} alt="" />{/if}
 </div>
