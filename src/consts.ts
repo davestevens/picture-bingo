@@ -1,4 +1,4 @@
-export const PLAYER_IMAGE_COUNT = 6;
+export const PLAYER_IMAGE_COUNT = 12;
 
 export const images = [
   "./images/1.png",
